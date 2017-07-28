@@ -1,4 +1,4 @@
-package com.mingyangdai.BinarySearchTree;
+package com.mingyangdai.Binary.BinarySearchTree;
 
 import com.mingyangdai.TreeNode;
 
