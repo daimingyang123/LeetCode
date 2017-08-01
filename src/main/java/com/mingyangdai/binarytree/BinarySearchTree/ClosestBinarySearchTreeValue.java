@@ -1,4 +1,4 @@
-package com.mingyangdai.BinarySearchTree;
+package com.mingyangdai.binarytree.BinarySearchTree;
 
 /**
  * @author mingyang.dai
