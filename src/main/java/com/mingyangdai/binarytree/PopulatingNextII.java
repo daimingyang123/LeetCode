@@ -7,30 +7,35 @@ package com.mingyangdai.binarytree;
 public class PopulatingNextII {
 	
 	public void connect(TreeLinkNode root) {
-		if (root == null) return;
-		if (root.left == null && root.right == null) return;
-		
-		TreeLinkNode left = root.left;
-		TreeLinkNode right = root.right;
-		TreeLinkNode next = root.next;
-		
-		if (left != null) left.next = right;
-		
-		while (next != null) {
-			TreeLinkNode node = next.left == null ? next.right : next.left;
-			if (right != null) right.next = node;
+		TreeLinkNode cur = root;
+		while (cur != null) {
+			if (cur.left != null) cur.left.next = cur.right;
 			
-			connect(next);
-			next = next.next;
+			TreeLinkNode first = cur.right == null ? cur.left : cur.right;
+			TreeLinkNode next = cur.next;
+			if (first != null && next != null) {
+				if (next.left != null) next.left.next = next.right;
+				
+				while (next != null && next.left == null && next.right == null) {
+					next = next.next;
+				}
+				if (next != null) {
+					TreeLinkNode second = next.left == null ? next.right : next.left;
+					first.next = second;
+				}
+			}
+			
+			cur = next;
 		}
 		
-		if (left != null) connect(left);
+		if (root != null && root.left != null) connect(root.left);
 	}
 	
 	public static void main(String[] args) {
 		int[] nums = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15};
 		TreeLinkNode root = TreeLinkNode.generate(nums);
-		root.right.left = null;
+//		root.left.left = null;
+//		root.left.right = null;
 		
 		PopulatingNextII nextII = new PopulatingNextII();
 		nextII.connect(root);
