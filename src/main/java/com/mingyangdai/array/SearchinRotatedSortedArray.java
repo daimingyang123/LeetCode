@@ -12,10 +12,7 @@ public class SearchinRotatedSortedArray {
 			if (nums[mid] == target) {
 				return mid;
 			} else {
-				if (start == mid) start++;
-				else if (end == mid) end--;
-				
-				if (nums[mid] > nums[start]) {
+				if (nums[mid] >= nums[start]) {
 					if (target >= nums[start] && target < nums[mid]) {
 						end = mid-1;
 					} else {
@@ -35,7 +32,7 @@ public class SearchinRotatedSortedArray {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums = {3,1};
+		int[] nums = {1,3};
 		int[] targets = {1};
 		SearchinRotatedSortedArray array = new SearchinRotatedSortedArray();
 		for (int target : targets) {
