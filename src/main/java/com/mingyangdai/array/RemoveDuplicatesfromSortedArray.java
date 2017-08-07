@@ -5,33 +5,45 @@ package com.mingyangdai.array;
  * @since 2017/8/4
  */
 public class RemoveDuplicatesfromSortedArray {
+	
 	public int removeDuplicates(int[] nums) {
-		if (nums.length < 2) return nums.length;
-		
-		int pre = nums[0], index = 1, count = 1;
+		int index = 0, count = 0;
 		while (index < nums.length) {
+			int pre = nums[index];
+			if (++index == nums.length) return ++count;
+			
 			if (nums[index] == pre) {
 				int start = index;
 				int end = start;
-				while (nums[end] == pre) {
-					if (end == nums.length-1) return count;
+				while (end<nums.length && nums[end]==pre) {
 					end++;
 				}
-				for (index=start; index<nums.length && index<end; index++) {
-					nums[index] = nums[end];
+				if (end == nums.length) return ++count;
+				
+				for (int i=start; i<end; i++) {
+					nums[i] = nums[end];
 				}
-				count++;
-				pre = nums[start];
-				index = end;
 			}
+			count++;
 		}
 		return count;
 	}
 	
+	public int removeDuplicates(int A[], int n) {
+		if(n < 2) return n;
+		int id = 1;
+		for(int i = 1; i < n; ++i)
+			if (A[i] != A[i-1]) {
+				A[id] = A[i];
+				id++;
+			}
+		return id;
+	}
+	
 	public static void main(String[] args) {
-		int[] nums = {1,1,1,2,2,2,3,3};
+		int[] nums = {1,1,1,3,3,3};
 		RemoveDuplicatesfromSortedArray array = new RemoveDuplicatesfromSortedArray();
-		int res = array.removeDuplicates(nums);
+		int res = array.removeDuplicates(nums, nums.length);
 		ArrayUtil.traversal(nums);
 		System.out.println(res);
 	}
