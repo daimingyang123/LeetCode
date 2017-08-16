@@ -7,49 +7,43 @@ import java.util.HashMap;
  * @since 2017/8/16
  */
 public class LargestBSTSubtree {
-	private HashMap<TreeNode, Integer> countMap = new HashMap<>();
+	
+	int count = 0;
 	private HashMap<TreeNode, Integer> maxMap = new HashMap<>();
+	private int max = 0;
 	
 	public int largestBSTSubtree(TreeNode root) {
 		if (root == null) return 0;
-		countMap.put(null, 0);
-		if (isBST(root)) return countMap.get(root);
-		if (isBST(root.left)) return countMap.get(root.left);
-		
-		if (root.left == null && root.right == null) return 1;
-		if (root.left == null) return largest(root.right) + 1;
-		if (root.right == null) return largest(root.left) + 1;
-		return Math.max(largest(root.left), largest(root.right));
+		isBST(root);
+		return max;
 	}
 	
 	private boolean isBST(TreeNode root) {
-		if (root == null) {
-			countMap.put(null, 0);
-			return true;
-		}
-		
 		TreeNode left = root.left;
 		TreeNode right = root.right;
-		Integer count = 1;
-		Integer max = root.val;
+		int localCount = 1;
+		int maxVal = root.val;
 		
-		if ( isBST(left) && root.val > maxMap.get(left) ) {
-			count += countMap.get(left);
+		if (left != null) {
+			if ( isBST(left) && root.val > maxMap.get(left) ) {
+				count += localCount;
+			} else {
+				return false;
+			}
 		}
-		if ( isBST(right) && root.val < maxMap.get(right) ) {
-			count += countMap.get(right);
-			max = maxMap.get(right);
+		if (right != null){
+			if ( isBST(right) && root.val < maxMap.get(right) ) {
+				count += localCount;
+				maxVal = maxMap.get(right);
+			} else {
+				return false;
+			}
 		}
-		countMap.put(root, count);
-		maxMap.put(root, max);
 		
-		if (count == 1) return false;
+		count = localCount;
+		maxMap.put(root, maxVal);
+		max = Math.max(max, count);
 		return true;
-	}
-	
-	private int largest(TreeNode root) {
-		if (root == null) return 0;
-		return largest(root.left) + largest(root.right) + 1;
 	}
 	
 	public static void main(String[] args) {
