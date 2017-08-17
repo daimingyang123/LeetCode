@@ -1,6 +1,7 @@
 package com.mingyangdai.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -29,10 +30,36 @@ public class Permutations {
 		}
 	}
 	
+	private boolean[] visited;
+	
+	public List<List<Integer>> permuteUnique(int[] nums) {
+		Arrays.sort(nums);
+		visited = new boolean[nums.length];
+		List<List<Integer>> res = new ArrayList<>();
+		permute(nums, new ArrayList<>(), res);
+		return res;
+	}
+	
+	private void permute(int[] nums, List<Integer> cur, List<List<Integer>> res) {
+		if (cur.size() == nums.length) {
+			res.add(new ArrayList<>(cur));
+			return;
+		}
+		for (int i=0; i<nums.length; i++) {
+			if (visited[i]) continue;
+			if (i>0 && nums[i] == nums[i-1] && !visited[i-1]) continue;
+			cur.add(nums[i]);
+			visited[i] = true;
+			permute(nums, cur, res);
+			cur.remove(cur.size()-1);
+			visited[i] = false;
+		}
+	}
+	
 	public static void main(String[] args) {
-		int[] nums = {1,2,3,2};
+		int[] nums = {1,1,2};
 		Permutations permutations = new Permutations();
-		List<List<Integer>> res = permutations.permute(nums);
+		List<List<Integer>> res = permutations.permuteUnique(nums);
 		System.out.println(res);
 	}
 }
