@@ -17,7 +17,7 @@ public class AppTest {
 		AppTest test = new AppTest();
 //		test.test();
 		int n = (int) Math.pow(2, 31);
-		System.out.println(n);
+		System.out.println(n-1);
 		String s = "";
 	}
 }
