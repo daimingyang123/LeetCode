@@ -16,12 +16,15 @@ public class TreeNode {
 		val = x;
 	}
 	
+	private static TreeNode real = null;
 	public static TreeNode generate(int[] nums) {
 		TreeNode root = new TreeNode(nums[0]);
+		real = root;
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(root);
 		
 		generate(queue, nums, 1);
+		processNull(root);
 		return root;
 	}
 	
@@ -37,6 +40,14 @@ public class TreeNode {
 			node.right = new TreeNode(nums[index++]);
 			queue.add(node.right);
 		}
+	}
+	
+	private static void processNull(TreeNode root) {
+		if (root == null) return;
+		if (root.left != null && root.left.val == -1) root.left = null;
+		processNull(root.left);
+		if (root.right != null && root.right.val == -1) root.right = null;
+		processNull(root.right);
 	}
 	
 	public static void traverse(TreeNode root) {

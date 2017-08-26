@@ -1,7 +1,7 @@
 package com.mingyangdai.binarytree;
 
-import java.util.HashSet;
-import java.util.Stack;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author mingyang.dai
@@ -9,75 +9,63 @@ import java.util.Stack;
  */
 public class LCA {
 	
-	public static void main(String[] args) {
-//		int[] nums = new int[10000];
-//		for (int i=0; i<nums.length; i++) {
-//			nums[i] = i;
-//		}
-		int[] nums = {1, 2, 3, 4, 5, 6, 7, 8};
-		TreeNode root = TreeNode.generate(nums);
-//		TreeNode.traverse(root);
-		
-		LCA lca = new LCA();
-		TreeNode p = TreeNode.find(root, 4);
-		TreeNode q = TreeNode.find(root, 3);
-		TreeNode res = lca.lowestCommonAncestor2(root, p, q);
-		System.out.println(res.val);
-	}
-	
-	public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
-		if (root == null || root == p || root == q) return root;
-		TreeNode left = lowestCommonAncestor2(root.left, p, q);
-		TreeNode right = lowestCommonAncestor2(root.right, p, q);
-		if (left != null && right != null) return root;
-		return left != null ? left : right;
-	}
-	
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-		if (root == null) return null;
-		
-		Stack<TreeNode> stack = new Stack<>();
-		dfs(root, stack, p);
-		HashSet<TreeNode> set = new HashSet<>();
-		dfs(root, set, q);
-		
-		while (!stack.isEmpty()) {
-			TreeNode node = stack.pop();
-			if (set.contains(node)) return node;
+		Queue<TreeNode> queue = new LinkedList<>();
+		queue.offer(root);
+		while (!queue.isEmpty()) {
+			Queue<TreeNode> queue2 = new LinkedList<>();
+			while (!queue.isEmpty()) {
+				TreeNode node = queue.poll();
+				TreeNode left = node.left;
+				TreeNode right = node.right;
+				
+				TreeNode source = null;
+				TreeNode target = null;
+				if (left == p || right == p) {
+					source = p;
+					target = q;
+				}
+				if (left == q || right == q) {
+					source = q;
+					target = p;
+				}
+				if (source != null) {
+					if (isChild(source, target)) return source;
+					return node;
+				}
+				if (node.left != null) queue2.offer(node.left);
+				if (node.right != null) queue2.offer(node.right);
+			}
+			queue = queue2;
 		}
 		return null;
 	}
 	
-	private boolean dfs(TreeNode root, Stack<TreeNode> stack, TreeNode target) {
-		stack.push(root);
-		if (root.equals(target)) return true;
-		if (root.left == null && root.right == null) return false;
-		
-		if (root.left != null) {
-			if (dfs(root.left, stack, target)) return true;
-			else stack.pop();
+	private boolean isChild(TreeNode source, TreeNode target) {
+		if (source == null) return false;
+		if (source == target) return true;
+		if (source.val < target.val) {
+			return isChild(source.right, target);
 		}
-		if (root.right != null) {
-			if (dfs(root.right, stack, target)) return true;
-			else stack.pop();
-		}
-		return false;
+		return isChild(source.left, target);
 	}
 	
-	private boolean dfs(TreeNode root, HashSet<TreeNode> set, TreeNode target) {
-		set.add(root);
-		if (root.equals(target)) return true;
-		if (root.left == null && root.right == null) return false;
-		
-		if (root.left != null) {
-			if (dfs(root.left, set, target)) return true;
-			else set.remove(root.left);
-		}
-		if (root.right != null) {
-			if (dfs(root.right, set, target)) return true;
-			else set.remove(root.right);
-		}
-		return false;
+	public TreeNode lowestCommonAncestor2(TreeNode root, TreeNode p, TreeNode q) {
+		if (root == p || root == q) return root;
+		int min = Math.min(p.val, q.val);
+		int max = Math.max(p.val, q.val);
+		if (root.val < min) return lowestCommonAncestor2(root.right, p, q);
+		if (root.val > min && root.val < max) return root;
+		return lowestCommonAncestor2(root.left, p, q);
 	}
 	
+	public static void main(String[] args) {
+		LCA lca = new LCA();
+		int[] nums = {6,2,8,0,4,7,9,-1,-1,3,5};
+		TreeNode root = TreeNode.generate(nums);
+		TreeNode p = TreeNode.find(root, 3);
+		TreeNode q = TreeNode.find(root, 9);
+		TreeNode res = lca.lowestCommonAncestor2(root, p, q);
+		System.out.println(res.val);
+	}
 }
