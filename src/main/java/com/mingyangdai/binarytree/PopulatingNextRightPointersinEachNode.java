@@ -6,32 +6,31 @@ package com.mingyangdai.binarytree;
  */
 public class PopulatingNextRightPointersinEachNode {
 	
-	public static void main(String[] args) {
-		int[] nums = new int[15];
-		for (int i = 1; i <= nums.length; i++) {
-			nums[i - 1] = i;
-		}
-		TreeLinkNode root = TreeLinkNode.generate(nums);
-		PopulatingNextRightPointersinEachNode node = new PopulatingNextRightPointersinEachNode();
-		node.connect(root);
-		System.out.println(root);
-	}
-	
 	public void connect(TreeLinkNode root) {
-		if (root == null) return;
-		if (root.left != null) connect(root.left, root.right);
+		while (root != null) {
+			TreeLinkNode left  = root.left;
+			while (root != null) {
+				if (root.left != null) {
+					root.left.next = root.right;
+					if (root.next != null && root.right != null) {
+						root.right.next = root.next.left;
+					}
+				}
+				root = root.next;
+			}
+			root = left;
+		}
 	}
 	
-	private void connect(TreeLinkNode left, TreeLinkNode right) {
-		left.next = right;
-		if (left.left != null) {
-			connect(left.left, left.right);
-		}
-		if (right != null) {
-			connect(right.left, right.right);
-			if (left.right != null) {
-				left.right.next = right.left;
-			}
-		}
+	public static void main(String[] args) {
+//		int[] nums = new int[15];
+//		for (int i = 1; i <= nums.length; i++) {
+//			nums[i - 1] = i;
+//		}
+		int[] nums = {1,2,3,4,5,6,7};
+		TreeLinkNode root = TreeLinkNode.generate(nums);
+		PopulatingNextRightPointersinEachNode left = new PopulatingNextRightPointersinEachNode();
+		left.connect(root);
+		System.out.println(root);
 	}
 }
