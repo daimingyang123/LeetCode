@@ -55,16 +55,22 @@ public class IntegertoEnglishWords {
 		StringBuilder res = new StringBuilder();
 		char[] array = s.toCharArray();
 		int length = array.length;
-		if (length == 2)
-		if (length > 0 && array[length-1]-'0' > 0) {
-			res.insert(0, getWord(array[length-1]));
+		if (length == 1) {
+			return getWord(array[0]);
 		}
-		if (length > 1 && array[length-2]-'0' > 0) {
-			res.insert(0, " ");
-			String word;
-			if (s.charAt(length-1) == '0') word = getDecade(array[length-2]);
-			else word = getDoubleDigit(s.substring(length-1));
-			res.insert(0, word);
+		if (length > 1) {
+			if (s.charAt(length-2)-'0' > 0) {
+				res.insert(0, " ");
+				String word;
+				if (s.charAt(length-2) == '1') {
+					word = getDoubleDigit(s.substring(length-2));
+				} else {
+					res.insert(0, getWord(array[length-1]));
+					res.insert(0, " ");
+					word = getDecade(array[length-2]);
+				}
+				res.insert(0, word);
+			}
 		}
 		if (length > 2 && array[length-3]-'0' > 0) {
 			res.insert(0, " ");
@@ -139,7 +145,7 @@ public class IntegertoEnglishWords {
 	
 	public static void main(String[] args) {
 		IntegertoEnglishWords words = new IntegertoEnglishWords();
-		int num = 20;
+		int num = 100020013;
 		String res = words.numberToWords(num);
 		System.out.println(res);
 	}

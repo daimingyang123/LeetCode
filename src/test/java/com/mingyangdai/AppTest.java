@@ -2,6 +2,7 @@ package com.mingyangdai;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Unit test for simple App.
@@ -15,9 +16,11 @@ public class AppTest {
 	
 	public static void main(String[] args) {
 		AppTest test = new AppTest();
-//		test.test();
-		int n = (int) Math.pow(2, 31);
-		System.out.println(n-1);
-		String s = "";
+		int a = 0/1;
+		System.out.println(a);
+		int b = 1/0;
+		System.out.println(b);
+		TreeSet<Integer> set = new TreeSet<>();
+		int c = set.ceiling(5);
 	}
 }
