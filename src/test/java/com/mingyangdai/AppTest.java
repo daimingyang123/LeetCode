@@ -1,7 +1,5 @@
 package com.mingyangdai;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -9,9 +7,7 @@ import java.util.TreeSet;
  */
 public class AppTest {
 	public void test() {
-		List<Integer> list = new ArrayList<>();
-		boolean flag = list.isEmpty();
-		System.out.println(flag);
+		int[] array = {};
 	}
 	
 	public static void main(String[] args) {
