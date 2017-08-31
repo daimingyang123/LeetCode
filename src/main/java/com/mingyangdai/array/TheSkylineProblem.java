@@ -1,7 +1,5 @@
 package com.mingyangdai.array;
 
-import com.google.common.collect.Lists;
-
 import java.util.*;
 
 /**
@@ -24,6 +22,10 @@ public class TheSkylineProblem {
 		for (int[] cur : map.keySet()) {
 			int[] pre = set.lower(cur);
 			if (pre != null) {
+				if (cur[0] < pre[1]) {
+					pre[1] = map.get(pre);
+					res.add(pre);
+				}
 				if (map.get(cur) == map.get(pre)) {//same height
 					cur[0] = pre[0];
 					cur[1] = Math.max(cur[1], pre[1]);
@@ -39,5 +41,6 @@ public class TheSkylineProblem {
 			set.add(cur);
 		}
 		
+		return null;
 	}
 }
