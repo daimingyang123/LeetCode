@@ -1,7 +1,5 @@
 package com.mingyangdai.array;
 
-import com.google.common.collect.Lists;
-
 import java.util.*;
 
 /**
@@ -38,6 +36,6 @@ public class TheSkylineProblem {
 			}
 			set.add(cur);
 		}
-		
+		return null;
 	}
 }
