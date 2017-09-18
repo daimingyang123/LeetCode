@@ -1,5 +1,7 @@
 package com.mingyangdai;
 
+import java.util.TreeSet;
+
 /**
  * Unit test for simple App.
  */
@@ -10,7 +12,7 @@ public class AppTest {
 	
 	public static void main(String[] args) {
 		AppTest test = new AppTest();
-		int res = Math.floorDiv(8,2);
-		System.out.println(res);
+		TreeSet set = new TreeSet();
+		set.lower(1);
 	}
 }
