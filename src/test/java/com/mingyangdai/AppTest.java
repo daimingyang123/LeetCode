@@ -10,7 +10,7 @@ public class AppTest {
 	
 	public static void main(String[] args) {
 		AppTest test = new AppTest();
-		int res = Math.floorDiv(8,2);
-		System.out.println(res);
+		System.out.println('0');
+		System.out.println('f');
 	}
 }
