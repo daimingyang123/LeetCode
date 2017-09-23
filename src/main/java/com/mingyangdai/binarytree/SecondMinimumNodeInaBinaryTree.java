@@ -17,7 +17,7 @@ public class SecondMinimumNodeInaBinaryTree {
     }
     
     private int findMax(TreeNode root) {
-        if (root.left == null) return -1;
+        if (root.left == null) return root.val;
         if (root.left.val == root.right.val) return Math.min(findMax(root.left), findMax(root.right));
         return Math.max(root.left.val, root.right.val);
     }
