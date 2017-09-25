@@ -4,13 +4,9 @@ package com.mingyangdai;
  * Unit test for simple App.
  */
 public class AppTest {
-	public void test() {
-		int[] array = {};
-	}
-	
 	public static void main(String[] args) {
-		AppTest test = new AppTest();
-		System.out.println('0');
-		System.out.println('f');
+		String s = "600916009";
+		String[] array = s.split("6");
+		System.out.println(array);
 	}
 }
