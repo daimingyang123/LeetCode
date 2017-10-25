@@ -1,57 +1,52 @@
 package com.mingyangdai.string;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author mingyang.dai
  * @since 2017/8/14
  */
 public class PermutationinString {
+	
 	public boolean checkInclusion(String s1, String s2) {
 		if (s1.length() > s2.length()) return false;
 		
-		Set<Character> set = new HashSet<>();
-		for (char c : s2.toCharArray()) {
-			set.add(c);
-		}
+		Map<Character, Integer> map1 = new HashMap<>();
 		for (char c : s1.toCharArray()) {
-			if (!set.contains(c)) return false;
+			Integer count = map1.getOrDefault(c, 0)+1;
+			map1.put(c, count);
 		}
 		
-		char[] array = s1.toCharArray();
-		Arrays.sort(array);
-		boolean[] visited = new boolean[array.length];
-		Set<String> strings = new HashSet<>();
-		permutation(array, visited, new StringBuilder(), strings);
-		for (String s : strings) {
-			if (s2.contains(s)) return true;
-		}
-		return false;
-	}
-	
-	private void permutation(char[] array, boolean[] visited, StringBuilder cur, Set<String> set) {
-		if (cur.length() == array.length) {
-			set.add(cur.toString());
-			return;
+		Map<Character, Integer> map2 = new HashMap<>();
+		char[] array = s2.toCharArray();
+		for (int i=0; i<s1.length(); i++) {
+			char cur = array[i];
+			Integer count = map2.getOrDefault(cur, 0)+1;
+			map2.put(cur, count);
 		}
 		
-		for (int i=0; i<array.length; i++) {
-			if (visited[i]) continue;
-			if (i>0 && array[i] == array[i-1] && !visited[i-1]) continue;
-			
-			visited[i] = true;
-			cur.append(array[i]);
-			permutation(array, visited, cur, set);
-			visited[i] = false;
-			cur.deleteCharAt(cur.length()-1);
+		for (int i=s1.length(); i<array.length; i++) {
+			if (map1.equals(map2)) {
+				return true;
+			} else {
+				char pre = array[i-s1.length()];
+				Integer count = map2.get(pre)-1;
+				if (count == 0) map2.remove(pre);
+				else map2.put(pre, count);
+				
+				char cur = array[i];
+				count = map2.getOrDefault(cur, 0)+1;
+				map2.put(cur, count);
+			}
 		}
+		
+		return map1.equals(map2);
 	}
 	
 	public static void main(String[] args) {
-		String s1 = "abcc";
-		String s2 = "eidbaooo";
+		String s1 = "ab";
+		String s2 = "eidboaab";
 		PermutationinString permutationinString = new PermutationinString();
 		boolean res = permutationinString.checkInclusion(s1, s2);
 		System.out.println(res);
