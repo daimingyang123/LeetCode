@@ -1,4 +1,4 @@
-package com.mingyangdai;
+package com.mingyangdai.sort;
 
 /**
  * @author mingyang.dai
