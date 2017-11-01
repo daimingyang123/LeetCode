@@ -14,7 +14,7 @@ public class TrappingRainWater {
         for (int i=0; i<height.length; i++) {
             if (!stack.isEmpty() && height[i]>height[stack.peek()]) {
                 int right = i;
-                while (stack.size() > 1) {
+                while (!stack.isEmpty() && height[stack.peek()]<=height[right]) {
                     int b = height[stack.pop()];
                     while (!stack.isEmpty() && height[stack.peek()]==b) {
                         stack.pop();
@@ -34,7 +34,7 @@ public class TrappingRainWater {
     }
     
     public static void main(String[] args) {
-        int[] height = {5,2,1,2,1,5};
+        int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
         int count = trap(height);
         System.out.println(count);
     }

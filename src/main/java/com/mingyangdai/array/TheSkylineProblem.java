@@ -8,33 +8,25 @@ import java.util.*;
  */
 public class TheSkylineProblem {
 	public List<int[]> getSkyline(int[][] buildings) {
-		Arrays.sort(buildings, Comparator.comparingInt(o -> o[2]));
-		Map<int[], Integer> map = new LinkedHashMap<>();
+		List<int[]> res = Arrays.asList();
+		Collections.sort(res, Comparator.comparingInt(o -> o[2]));
+		TreeMap<Integer, int[]> map = new TreeMap<>();
 		for (int[] b : buildings) {
-			int[] array = new int[2];
-			array[0] = b[0];
-			array[1] = b[1];
-			map.put(array, b[2]);
+			map.put(b[2], b);
 		}
-		
-		List<int[]> res = new ArrayList<>();
-		TreeSet<int[]> set = new TreeSet<>(Comparator.comparingInt(o -> o[0]));
-		for (int[] cur : map.keySet()) {
-			int[] pre = set.lower(cur);
-			if (pre != null) {
-				if (map.get(cur) == map.get(pre)) {//same height
-					cur[0] = pre[0];
-					cur[1] = Math.max(cur[1], pre[1]);
-				} else {//pre.height > cur.height
-					if (cur[1] < pre[1]) continue;
-					if (cur[0] < pre[1]) {
-						cur[0] = pre[1];
+
+		for (int i = 0; i < res.size(); i++) {
+			int[] h = res.get(i);
+			for (int[] l : map.headMap(h[2]).values()) {
+				if (l[0]>=h[0] && l[0]<h[1]) {
+					if (l[1] <= h[1]) {
+
 					}
 				}
-			} else {
-			
+				if (l[0]>h[1] && l[1]<h[0]) {
+
+				}
 			}
-			set.add(cur);
 		}
 		return null;
 	}
