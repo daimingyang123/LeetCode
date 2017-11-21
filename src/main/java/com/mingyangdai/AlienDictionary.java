@@ -29,12 +29,12 @@ public class AlienDictionary {
 	
 	public String alienOrder(String[] words) {
 		
-		Map<Character, HashSet<Character>> map = new HashMap<Character, HashSet<Character>>();
-		Map<Character, Integer> degree = new HashMap<Character, Integer>();
+		Map<Character, HashSet<Character>> map = new HashMap<>();
+		Map<Character, Integer> degree = new HashMap<>();
 		
 		for (String word : words) {
 			for (char c : word.toCharArray()) {
-				map.put(c, new HashSet<Character>());
+				map.put(c, new HashSet<>());
 				degree.put(c, 0);
 			}
 		}
@@ -62,7 +62,7 @@ public class AlienDictionary {
 			}
 		}
 		
-		Queue<Character> queue = new LinkedList<Character>();
+		Queue<Character> queue = new LinkedList<>();
 		for (Map.Entry<Character, Integer> entry : degree.entrySet()) {
 			if (entry.getValue() == 0) queue.add(entry.getKey());
 		}
