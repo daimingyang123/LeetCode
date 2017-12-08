@@ -1,6 +1,7 @@
 package com.mingyangdai;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 
 /**
  * Unit test for simple App.
@@ -37,8 +38,15 @@ public class AppTest {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums = {2,2,3,4};
-		int res = triangleNumber(nums);
+		LinkedHashSet<String> set1 = new LinkedHashSet<>();
+		set1.add("a");
+		set1.add("b");
+		set1.add("c");
+		System.out.println(set1.toString());
+		LinkedHashSet<String> set2 = new LinkedHashSet<>();
+		set2.add("b");
+		set2.add("a");
+		boolean res = set1.containsAll(set2);
 		System.out.println(res);
 	}
 }
