@@ -1,7 +1,8 @@
 package com.mingyangdai;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
+import java.util.List;
 
 /**
  * Unit test for simple App.
@@ -38,15 +39,10 @@ public class AppTest {
 	}
 	
 	public static void main(String[] args) {
-		LinkedHashSet<String> set1 = new LinkedHashSet<>();
-		set1.add("a");
-		set1.add("b");
-		set1.add("c");
-		System.out.println(set1.toString());
-		LinkedHashSet<String> set2 = new LinkedHashSet<>();
-		set2.add("b");
-		set2.add("a");
-		boolean res = set1.containsAll(set2);
-		System.out.println(res);
+		List<Integer> cur = new ArrayList<>();
+		cur.add(1);
+		cur.add(2);
+		cur.add(3);
+		System.out.println(new ArrayList<>(cur).size());
 	}
 }
