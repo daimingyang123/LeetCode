@@ -1,7 +1,9 @@
 package com.mingyangdai;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Unit test for simple App.
@@ -9,8 +11,11 @@ import java.util.HashSet;
 public class AppTest {
 	
 	public static void main(String[] args) {
-		HashSet<String> set = new HashSet<>();
-		set.addAll(new ArrayList<>());
-		char a = 'a' + 1;
+		Map map = new HashMap<>();
+		map.values();
+		LinkedList linkedList = new LinkedList();
+		HashSet set = new HashSet();
+//		set.addAll()
+		
 	}
 }
