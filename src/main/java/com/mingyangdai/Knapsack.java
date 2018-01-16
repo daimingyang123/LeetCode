@@ -16,13 +16,12 @@ public class Knapsack {
 		int target = 7;
 		List<List<Integer>> result = k.knapsack(candidates, target);
 		System.out.println(result);
-//        System.out.println("aabccb".substring(0,6));
 	}
 	
 	public List<List<Integer>> knapsack(int[] candidates, int target) {
 		Arrays.sort(candidates);
-		List<List<Integer>> results = new ArrayList<List<Integer>>();
-		List<Integer> cur = new ArrayList<Integer>();
+		List<List<Integer>> results = new ArrayList<>();
+		List<Integer> cur = new ArrayList<>();
 		knapsack(candidates, 0, target, results, cur);
 		return results;
 	}
@@ -30,7 +29,7 @@ public class Knapsack {
 	public void knapsack(int[] candidates, int index, int target, List<List<Integer>> results, List<Integer> cur) {
 		if (target < 0) return;
 		if (target == 0) {
-			results.add(new ArrayList<Integer>(cur));
+			results.add(new ArrayList<>(cur));
 			return;
 		}
 		for (int i = index; i < candidates.length; i++) {

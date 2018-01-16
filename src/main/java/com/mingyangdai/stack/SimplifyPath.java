@@ -1,8 +1,5 @@
 package com.mingyangdai.stack;
 
-import com.google.common.collect.Lists;
-
-import java.util.List;
 import java.util.Stack;
 
 /**
@@ -11,26 +8,30 @@ import java.util.Stack;
  */
 public class SimplifyPath {
 	public static String simplifyPath(String path) {
-		String[] strings = path.split("/");
 		Stack<String> stack = new Stack<>();
-		for (String s : strings) {
-			if (s.equals("") || s.equals(".")) continue;
-			if (s.equals("..") && !stack.isEmpty()) {
-				stack.pop();
-			} else {
-				stack.push(s);
+		for (String s : path.split("/")) {
+			switch (s) {
+				case "" :
+				case ".":
+					break;
+				case "..":
+					if (!stack.isEmpty()) stack.pop();
+					break;
+				default:
+					stack.push("/"+s);
+					break;
 			}
 		}
-		return "/".join("/", stack);
+		return String.join("", stack);
 	}
 	
 	public static void main(String[] args) {
-//		String path = "/a/./b/../../c/";
-//		String result = simplifyPath(path);
-//		System.out.printf(result);
-		String s = "hello";
-		List<String> elements = Lists.newArrayList("world", "oh", "ho");
-		String result = s.join(".", elements);
-		System.out.println(result);
+		String path = "/a/./b/../../c/";
+		String result = simplifyPath(path);
+		System.out.printf(result);
+//		String s = "hello";
+//		List<String> elements = Lists.newArrayList("world", "oh", "ho");
+//		String result = s.join(".", elements);
+//		System.out.println(result);
 	}
 }
