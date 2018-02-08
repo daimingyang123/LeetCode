@@ -43,7 +43,7 @@ public class FractiontoRecurringDecimal {
 	
 	public static void main(String[] args) {
 		FractiontoRecurringDecimal decimal = new FractiontoRecurringDecimal();
-		int n = 200, d = 3;
+		int n = 2, d = 3;
 		String res = decimal.fractionToDecimal(n, d);
 		System.out.println(res);
 	}
