@@ -7,8 +7,8 @@ package com.mingyangdai;
 public class LongestCommonSubstring {
 	
 	public static void main(String[] args) {
-		String a = "abcd";
-		String b = "abd";
+		String a = "www.lintcode.com code";
+		String b = "www.ninechapter.com code";
 		LongestCommonSubstring substring = new LongestCommonSubstring();
 		int res = substring.longestCommonSubstring(a, b);
 		System.out.println(res);
@@ -29,7 +29,7 @@ public class LongestCommonSubstring {
 				if (A.charAt(i - 1) == B.charAt(j - 1)) {
 					f[i][j] = f[i - 1][j - 1] + 1;
 				} else {
-					f[i][j] = Math.max(f[i][j - 1], f[i - 1][j]);
+					f[i][j] = 0;
 				}
 			}
 		}
@@ -44,4 +44,5 @@ public class LongestCommonSubstring {
 		
 		return max;
 	}
+	
 }
