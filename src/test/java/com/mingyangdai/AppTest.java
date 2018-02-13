@@ -1,9 +1,6 @@
 package com.mingyangdai;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Unit test for simple App.
@@ -188,11 +185,7 @@ class Pair {
 	
 	
 	public static void main(String[] args) {
-		int N = 4;
-		String S = "";
-		String T = "";
-		
-		String res = new AppTest().solution(4, S, T);
-		System.out.println(res);
+		Map<Integer, int[]> res = new HashMap<>();
+		int[] array = res.getOrDefault(1, new int[2]);
 	}
 }

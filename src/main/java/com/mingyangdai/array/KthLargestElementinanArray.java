@@ -1,5 +1,7 @@
 package com.mingyangdai.array;
 
+import java.util.Arrays;
+
 /**
  * @author mingyang.dai
  * @since 2017/8/5
@@ -28,49 +30,31 @@ public class KthLargestElementinanArray {
 		return output;
 	}
 	
-//	private int partition(int[] arr, int left, int right) {
-//		int q = left;
-//		for (int j=left; j<=right-1;j++){
-//			if (arr[j] <= arr[right]){
-//				swap(arr, j, q);
-//				q++;
-//			}
-//		}
-//		swap(arr, right, q);
-//		return q;
-//	}
-	
-//	private void swap(int[] nums, int first, int second){
-//		int temp = nums[first];
-//		nums[first] = nums[second];
-//		nums[second] = temp;
-//	}
-	
 	public int findKthLargest(int[] nums, int k) {
-		if (nums.length == 1) return nums[0];
-		
-		int start = 0, end = nums.length-1;
-		while (true) {
-			int i = partition(nums, start, end);
-			if (nums.length-i == k) return nums[i];
-			if (nums.length-i > k) {
-				start = k+1;
+		k = nums.length - k;
+		int low = 0, high = nums.length-1;
+		while (low < high) {
+			int index = partition(nums, low, high);
+			if (index == k) break;
+			else if (index < k) {
+				low = index + 1;
 			} else {
-				end = k-1;
+				high = index - 1;
 			}
 		}
+		return nums[k];
 	}
 	
-	public int partition(int[] nums, int left, int right) {
-		int small = left, big=left;
-		while (big < right) {
-			if (nums[big] < nums[right]) {
-				swap(nums, big, small++);
+	private int partition(int[] nums, int p, int r) {
+		int q = p, j = p;
+		while (j < r) {
+			if (nums[j] < nums[r]) {
+				swap(nums, j, q++);
 			}
-			big++;
+			j++;
 		}
-		swap(nums, small, right);
-		return small;
+		swap(nums, r, q);
+		return q;
 	}
 	
 	private void swap(int[] nums, int i, int j) {
@@ -79,10 +63,17 @@ public class KthLargestElementinanArray {
 		nums[j] = tmp;
 	}
 	
+
+	
 	public static void main(String[] args) {
 		KthLargestElementinanArray array =  new KthLargestElementinanArray();
-		int[] nums = {2,1};
-		int res = array.findKthLargest(nums,1);
+		int[] nums = {3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6};
+		int res = array.findKthLargest(nums,20);
 		System.out.println(res);
+		Arrays.sort(nums);
+		for (int i : nums) {
+			System.out.print(i);
+			System.out.print(",");
+		}
 	}
 }
