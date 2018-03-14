@@ -31,12 +31,7 @@ public class TreeSetProblems {
 	}
 	
 	public ListNode mergeKLists(ListNode[] lists) {
-		PriorityQueue<ListNode> queue = new PriorityQueue<ListNode>(new Comparator<ListNode>() {
-			@Override
-			public int compare(ListNode o1, ListNode o2) {
-				return o1.val - o2.val;
-			}
-		});
+		PriorityQueue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(o -> o.val));
 		
 		for (ListNode head : lists) {
 			if (head != null) queue.add(head);

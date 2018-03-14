@@ -6,14 +6,14 @@ import java.util.*;
  * @author mingyang.dai
  * @since 17/4/7
  */
-public class StringProblems {
+public class ProblemsAboutString {
 	
 	private HashSet<Character> first = new HashSet<Character>();
 	private HashSet<Character> second = new HashSet<Character>();
 	private HashSet<Character> third = new HashSet<Character>();
 	
 	public static void main(String[] args) {
-		StringProblems problems = new StringProblems();
+		ProblemsAboutString problems = new ProblemsAboutString();
 		String s = "adbcbcda";
 		int result = problems.lengthOfLongestSubstring(s);
 		System.out.println(result);
