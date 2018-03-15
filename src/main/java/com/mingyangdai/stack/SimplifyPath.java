@@ -10,23 +10,23 @@ public class SimplifyPath {
 	public static String simplifyPath(String path) {
 		Stack<String> stack = new Stack<>();
 		for (String s : path.split("/")) {
-			switch (s) {
-				case "" :
+			switch(s) {
+				case "":
 				case ".":
 					break;
 				case "..":
 					if (!stack.isEmpty()) stack.pop();
 					break;
-				default:
-					stack.push("/"+s);
+				default :
+					stack.push(s);
 					break;
 			}
 		}
-		return String.join("", stack);
+		return stack.isEmpty() ? "/" : String.join("/", stack);
 	}
 	
 	public static void main(String[] args) {
-		String path = "/a/./b/../../c/";
+		String path = "c";
 		String result = simplifyPath(path);
 		System.out.printf(result);
 //		String s = "hello";
