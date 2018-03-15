@@ -31,14 +31,14 @@ public class LongestSubstringWithoutRepeatingCharacters {
 		char[] array = s.toCharArray();
 		int start = 0, i = 0, max = 0;
 		for (; i<array.length; i++) {
-			int index = array[i]-'a';
+			int index = array[i] - 'a';
 			if (map[index] != -1) {
 				max = Math.max(max, i-start);
-				start = Math.max(start, map[index]);
+				start = Math.max(start, map[index]+1);
 			}
 			map[index] = i;
 		}
-		max = Math.max(max, array.length-start);
+		max = Math.max(max, array.length-1-start);
 		return max;
 	}
 	
