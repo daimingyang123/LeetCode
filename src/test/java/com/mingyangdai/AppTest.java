@@ -1,13 +1,17 @@
 package com.mingyangdai;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 	
 	public static void main(String[] args) {
-		int a = 3 % 2 % 3 % 5;
-		a/=2;
-		System.out.println(a);
+		int k = 5;
+		int[] array = new int[k];
+		List<Integer>[] bucket = new List[k];
+		bucket[0] = new ArrayList<>();
 	}
 }
