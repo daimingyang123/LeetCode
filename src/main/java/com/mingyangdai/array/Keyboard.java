@@ -43,11 +43,6 @@ public class Keyboard {
     private int max = 0;
     private static Map<Param, Integer> map = new HashMap<>();
     
-    public int maxA(int N) {
-        print(new Param(N, 0, 0));
-        return max;
-    }
-    
     private int print(Param param) {
         Integer count = map.get(param);
         if (count != null) return count;
@@ -61,5 +56,21 @@ public class Keyboard {
         max = Math.max(max, count);
         map.put(param, count);
         return count;
+    }
+    
+    public int maxA(int N) {
+        int[] best = new int[N+1];
+        for (int k = 1; k <= N; ++k) {
+            best[k] = best[k-1] + 1;
+            for (int x = 0; x < k-1; ++x)
+                best[k] = Math.max(best[k], best[x] * (k-x-1));
+        }
+        return best[N];
+    }
+    
+    public static void main(String[] args) {
+        int N = 3;
+        int res = new Keyboard().maxA(N);
+        System.out.println(res);
     }
 }
