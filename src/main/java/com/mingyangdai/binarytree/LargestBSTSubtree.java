@@ -1,45 +1,42 @@
 package com.mingyangdai.binarytree;
 
+import java.util.Stack;
+
 /**
  * @author mingyang.dai
  * @since 2017/8/16
  */
 public class LargestBSTSubtree {
-	class Result {  // (size, rangeLower, rangeUpper) -- size of current tree, range of current tree [rangeLower, rangeUpper]
-		int size;
-		int lower;
-		int upper;
-		
-		Result(int size, int lower, int upper) {
-			this.size = size;
-			this.lower = lower;
-			this.upper = upper;
-		}
-	}
-	
 	int max = 0;
 	
 	public int largestBSTSubtree(TreeNode root) {
-		if (root == null) { return 0; }
-		traverse(root);
+		inorder(root, new Stack<>());
 		return max;
 	}
 	
-	private Result traverse(TreeNode root) {
-		if (root == null) { return new Result(0, Integer.MAX_VALUE, Integer.MIN_VALUE); }
-		Result left = traverse(root.left);
-		Result right = traverse(root.right);
-		if (left.size == -1 || right.size == -1 || root.val <= left.upper || root.val >= right.lower) {
-			return new Result(-1, 0, 0);
-		}
-		int size = left.size + 1 + right.size;
-		max = Math.max(size, max);
-		return new Result(size, Math.min(left.lower, root.val), Math.max(right.upper, root.val));
+	private int inorder(TreeNode root, Stack<Integer> stack) {
+		if (root == null) return 0;
+		boolean valid = true;
+		
+		int left = inorder(root.left, stack);
+		if (!stack.isEmpty() && root.val < stack.pop()) valid = false;
+		stack.push(root.val);
+		int right = inorder(root.right, stack);
+		
+		int res;
+		if (!valid) res = 0;
+		else if (root.left != null && left == 0) res = 0;
+		else if (root.right != null && right == 0) res = 0;
+		else res = left + right + 1;
+		max = Math.max(max, res);
+		return Math.max(left, right) + 1;
 	}
 	
 	public static void main(String[] args) {
-//		int[] nums = {10,5,15,1,8,6,7};
+//		int[] nums = {3,2,-1,-1,4,-1,-1,1};
 //		TreeNode root = TreeNode.generate(nums);
+//		root.right = null;
+//		root.left.left = null;
 		TreeNode root = new TreeNode(3);
 		root.left = new TreeNode(2);
 		root.left.right = new TreeNode(4);
