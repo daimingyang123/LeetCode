@@ -81,6 +81,6 @@ public class AppTest {
 	}
 	
 	public static void main(String[] args) {
-		Double d = 1D;
+		System.out.println(1 << 1);
 	}
 }
