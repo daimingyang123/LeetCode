@@ -1,11 +1,14 @@
 package com.mingyangdai;
 
+import java.util.TreeSet;
+
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 	
 	public static void main(String[] args) {
-		String s = "abc";
+		TreeSet set = new TreeSet();
+		
 	}
 }
