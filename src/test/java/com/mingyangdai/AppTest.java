@@ -1,6 +1,6 @@
 package com.mingyangdai;
 
-import java.util.TreeSet;
+import java.util.Arrays;
 
 /**
  * Unit test for simple App.
@@ -8,7 +8,8 @@ import java.util.TreeSet;
 public class AppTest {
 	
 	public static void main(String[] args) {
-		TreeSet set = new TreeSet();
-		
+		int a = 'A';
+		System.out.println(a);
+		Arrays.sort(new int[]{1,2,3}, 1, 2);
 	}
 }
