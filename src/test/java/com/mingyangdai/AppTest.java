@@ -2,11 +2,18 @@ package com.mingyangdai;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 /**
  * Unit test for simple App.
  */
 public class AppTest {
+	private static final HashSet<Character> set = new HashSet<>();
+	static {
+		set.add('a');
+	}
+	
+	
 	
 	class Trie {
 		public char val;
@@ -81,6 +88,9 @@ public class AppTest {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(1 << 1);
+		TreeSet<Integer> set = new TreeSet<>();
+		set.add(3);
+		Integer val = set.higher(3);
+		System.out.println(val);
 	}
 }
