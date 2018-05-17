@@ -9,7 +9,7 @@ import java.util.List;
 public class AppTest {
 	private static final HashSet<Character> set = new HashSet<>();
 	static {
-		set.add('a');
+		set.add('b');
 	}
 	
 	

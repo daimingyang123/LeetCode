@@ -11,6 +11,5 @@ public class FactorialTrailingZeroes {
 	
 	public static void main(String[] args) {
 		int res = new FactorialTrailingZeroes().trailingZeroes(125);
-		System.out.println(res);
 	}
 }
