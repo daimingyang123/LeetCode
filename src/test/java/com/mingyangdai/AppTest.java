@@ -2,7 +2,6 @@ package com.mingyangdai;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.TreeSet;
 
 /**
  * Unit test for simple App.
@@ -88,9 +87,7 @@ public class AppTest {
 	}
 	
 	public static void main(String[] args) {
-		TreeSet<Integer> set = new TreeSet<>();
-		set.add(3);
-		Integer val = set.higher(3);
-		System.out.println(val);
+		String s1 = "";
+		String s2 = new String(s1);
 	}
 }

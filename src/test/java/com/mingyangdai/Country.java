@@ -1,5 +1,7 @@
 package com.mingyangdai;
 
+import java.util.HashMap;
+
 /**
  * @author mingyang.dai
  * @since 2017/11/16
@@ -33,6 +35,8 @@ public class Country {
 		Country country = new Country();
 		country.count = 5;
 		country.increase(1);
+		HashMap map = new HashMap();
+		
 	}
 }
 
