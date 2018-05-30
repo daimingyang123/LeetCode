@@ -1,14 +1,33 @@
 package com.mingyangdai;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
 
 /**
  * @author mingyang.dai
  * @since 2017/11/16
  */
-public class Country {
+public class Country implements Iterable<Country> {
+	
 	private int count;
 	private String name;
+	
+	@Override
+	public Iterator<Country> iterator() {
+		return null;
+	}
+	
+	@Override
+	public void forEach(Consumer<? super Country> action) {
+	
+	}
+	
+	@Override
+	public Spliterator<Country> spliterator() {
+		return null;
+	}
 	
 	public class Citizen{
 		private int count;
