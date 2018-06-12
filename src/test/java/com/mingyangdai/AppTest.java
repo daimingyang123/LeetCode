@@ -1,11 +1,14 @@
 package com.mingyangdai;
 
+import java.util.TreeMap;
+
 /**
  * Unit test for simple App.
  */
 public class AppTest {
 	
 	public static void main(String[] args) {
-		System.out.println();
+		TreeMap map = new TreeMap();
+		
 	}
 }
