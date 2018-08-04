@@ -23,8 +23,5 @@ public class LongestUnivaluePath {
 	}
 	
 	public static void main(String[] args) {
-		TreeNode root = TreeNode.generate(new int[]{5, 4, 5, 1, 1, 5});
-		int res = new LongestUnivaluePath().longestUnivaluePath(root);
-		System.out.println(res);
 	}
 }

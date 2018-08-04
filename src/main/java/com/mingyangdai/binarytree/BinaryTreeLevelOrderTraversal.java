@@ -38,10 +38,5 @@ public class BinaryTreeLevelOrderTraversal {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums = {1,2,3,4,5};
-		TreeNode root = TreeNode.generate(nums);
-		BinaryTreeLevelOrderTraversal traversal = new BinaryTreeLevelOrderTraversal();
-		List<List<Integer>> res = traversal.levelOrder(root);
-		System.out.println(res);
 	}
 }

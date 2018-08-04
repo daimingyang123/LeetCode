@@ -60,12 +60,5 @@ public class LCA {
 	}
 	
 	public static void main(String[] args) {
-		LCA lca = new LCA();
-		int[] nums = {6,2,8,0,4,7,9,-1,-1,3,5};
-		TreeNode root = TreeNode.generate(nums);
-		TreeNode p = TreeNode.find(root, 3);
-		TreeNode q = TreeNode.find(root, 9);
-		TreeNode res = lca.lowestCommonAncestor2(root, p, q);
-		System.out.println(res.val);
 	}
 }

@@ -17,11 +17,6 @@ public class PathSumIII {
 	}
 	
 	public static void main(String[] args) {
-		PathSumIII pathSumIII = new PathSumIII();
-		int[] nums = {10,5,-3,3,2};
-		TreeNode root = TreeNode.generate(nums);
-		int sum = 8;
-		int res = pathSumIII.pathSum(root, sum);
-		System.out.println(res);
+
 	}
 }

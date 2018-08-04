@@ -30,10 +30,5 @@ public class ConvertBSTtoGreaterTree {
     }
     
     public static void main(String[] args) {
-        int[] nums = {4,2,6,1,3,5,7};
-        TreeNode root = TreeNode.generate(nums);
-        ConvertBSTtoGreaterTree tree = new ConvertBSTtoGreaterTree();
-        tree.convertBST(root);
-        TreeNode.traverse(root);
     }
 }
