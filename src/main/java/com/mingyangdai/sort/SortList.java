@@ -73,5 +73,9 @@ public class SortList {
         return cur;
     }
     
-    
+    public static void main(String[] args) {
+        ListNode head = ListNode.generate(new int[]{8,1,4,3,2,7,5,6});
+        ListNode res = new SortList().sortList(head);
+        ListNode.traversalLinkedList(res);
+    }
 }
