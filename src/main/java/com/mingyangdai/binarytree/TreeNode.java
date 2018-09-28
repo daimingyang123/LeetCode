@@ -17,28 +17,37 @@ public class TreeNode {
 	}
 	
 	private static TreeNode real = null;
-	public static TreeNode generate(int[] nums) {
+	
+	public static TreeNode generate(Integer[] nums) {
 		TreeNode root = new TreeNode(nums[0]);
-		real = root;
 		Queue<TreeNode> queue = new LinkedList<>();
 		queue.offer(root);
 		
 		generate(queue, nums, 1);
-		processNull(root);
 		return root;
 	}
 	
-	public static void generate(Queue<TreeNode> queue, int[] nums, int index) {
+	public static void generate(Queue<TreeNode> queue, Integer[] nums, int index) {
 		while (!queue.isEmpty()) {
 			TreeNode node = queue.poll();
+			if (node == null) {
+				index += 2;
+				continue;
+			}
 			
 			if (index >= nums.length) return;
-			node.left = new TreeNode(nums[index++]);
+			if (nums[index] != null) {
+				node.left = new TreeNode(nums[index]);
+			}
 			queue.add(node.left);
+			index++;
 			
 			if (index >= nums.length) return;
-			node.right = new TreeNode(nums[index++]);
+			if (nums[index] != null) {
+				node.right = new TreeNode(nums[index]);
+			}
 			queue.add(node.right);
+			index++;
 		}
 	}
 	
@@ -105,7 +114,7 @@ public class TreeNode {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums = {1,2,3,4,5,6,7};
+		Integer[] nums = {1,null, 2, null, null, null, 3};
 		TreeNode root = generate(nums);
 		traverse(root);
 	}

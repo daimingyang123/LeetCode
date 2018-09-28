@@ -28,9 +28,5 @@ public class BinaryTreeMaximumPathSum {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums = {1,2,3};
-		TreeNode root = TreeNode.generate(nums);
-		int res = new BinaryTreeMaximumPathSum().maxPathSum(root);
-		System.out.println(res);
 	}
 }

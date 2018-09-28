@@ -53,11 +53,5 @@ public class MergeTwoBST {
 	}
 	
 	public static void main(String[] args) {
-		int[] nums1 = {2,1,3};
-		TreeNode t1 = TreeNode.generate(nums1);
-		int[] nums2 = {6,5,7,4};
-		TreeNode t2 = TreeNode.generate(nums2);
-		TreeNode root = mergeBST(t1, t2);
-		TreeNode.traverse(root);
 	}
 }

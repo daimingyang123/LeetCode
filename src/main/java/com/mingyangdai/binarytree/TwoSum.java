@@ -21,10 +21,5 @@ public class TwoSum {
     }
     
     public static void main(String[] args) {
-        int[] nums = {1,2,3,4,5,6,7};
-        TreeNode root = TreeNode.generate(nums);
-        TwoSum sum = new TwoSum();
-        boolean res = sum.findTarget(root, 100);
-        System.out.println(res);
     }
 }
