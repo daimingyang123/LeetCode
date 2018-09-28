@@ -5,7 +5,8 @@ package com.mingyangdai;
  */
 public class AppTest {
 	public void test() {
-	
+		char[] array = new char[4];
+		new String(array);
 	}
 	public static void main(String[] args) throws InterruptedException {
 		int[] array = new int[]{228,189,160,229,165,189,13,10};
