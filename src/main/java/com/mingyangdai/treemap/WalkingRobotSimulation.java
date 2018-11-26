@@ -1,4 +1,4 @@
-package com.mingyangdai.treeset;
+package com.mingyangdai.treemap;
 
 import java.util.HashMap;
 import java.util.Map;
