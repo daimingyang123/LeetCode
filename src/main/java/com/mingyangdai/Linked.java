@@ -1,5 +1,7 @@
 package com.mingyangdai;
 
+import com.mingyangdai.LinkedList.ListNode;
+
 /**
  * @author mingyang.dai
  * @since 17/4/7
